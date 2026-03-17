@@ -3,8 +3,6 @@
 #include "sensor.h"
 #include "motor.h"
 
-int baseSpeed = 350;
-
 void setup()
 {
     pinMode(PA0,INPUT);
@@ -19,14 +17,5 @@ void setup()
 
 void loop()
 {
-    readSensors();
-
-    int error = getError();
-
-    float correction = calculatePID(error);
-
-    int leftSpeed = baseSpeed + correction;
-    int rightSpeed = baseSpeed - correction;
-
-    setMotorSpeed(leftSpeed,rightSpeed);
+    calculatePID();
 }
