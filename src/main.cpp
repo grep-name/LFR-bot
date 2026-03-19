@@ -38,8 +38,8 @@ void loop()
     int rightSpeed = base_speed - correction;
 
     // Limit PWM range
-    leftSpeed  = constrain(leftSpeed, 0, 255);
-    rightSpeed = constrain(rightSpeed, 0, 255);
+    leftSpeed  = constrain(leftSpeed, -255, 255);
+    rightSpeed = constrain(rightSpeed, -255, 255);
 
     setMotorSpeed(leftSpeed, rightSpeed);
 }
