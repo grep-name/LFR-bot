@@ -2,11 +2,11 @@
 #include "motor.h"
 #include "pid.h"
 #include "ir_sensor.h"
-#define S1 PB3
-#define S2 PB5
-#define S3 PB4
-#define S4 PB10
-#define S5 PA8
+#define S1 D3
+#define S2 D4
+#define S3 D5
+#define S4 D6
+#define S5 D7
 
 void sensorInit() {
     pinMode(S1, INPUT);

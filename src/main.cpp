@@ -17,6 +17,7 @@ void loop()
 
     // If line is lost → stop
     if (position == -1) {
+        
         setMotorSpeed(0, 0);
         return;
     }
