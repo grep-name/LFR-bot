@@ -1,6 +1,5 @@
 #include "pid.h"
-#include "sensor.h"
-#include "Arduino.h"
+#include <Arduino.h>
 
 int sensor[5];
 
@@ -9,7 +8,7 @@ float Ki = 0;
 float Kd = 12;
 
 int error = 0;
-float prevError = 0;
+float lastError = 0;
 float integral = 0;
 
 void readSensors()
@@ -23,13 +22,13 @@ void readSensors()
 
 
 
-int calculatePID()
-{
+int calculatePID(error)
+{   
     error = {sensor[2]*2+sensor[3]*0+sensor[4]*-2};
 
     integral += error;
 
-    float derivative = error - prevError;
+    float derivative = error - lastError;
 
     float output = (Kp * error) + (Ki * integral) + (Kd * derivative);
 
