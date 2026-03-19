@@ -4,6 +4,6 @@
 #include <Arduino.h>
 
 void sensorInit();
-int readLine();
+float readLine();   // ✅ ONLY ONE declaration
 
 #endif

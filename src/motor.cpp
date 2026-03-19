@@ -1,35 +1,40 @@
-#include <Arduino.h>
 #include "motor.h"
 
-// Left motor pins
-#define L_IN1 PA8
-#define L_IN2 PA9
+// LEFT MOTOR
+#define ENA D9
+#define IN1 D10
+#define IN2 D11
 
-// Right motor pins
-#define R_IN1 PB0
-#define R_IN2 PB1
+// RIGHT MOTOR
+#define ENB D8
+#define IN3 D12
+#define IN4 D13
 
-void setMotorSpeed(int left, int right)
-{
-    // LEFT MOTOR
-    if (left >= 0) {
-        digitalWrite(L_IN1, HIGH);
-        digitalWrite(L_IN2, LOW);
-        analogWrite(L_IN1, left);
+void motorInit() {
+    pinMode(ENA, OUTPUT);
+    pinMode(IN1, OUTPUT);
+    pinMode(IN2, OUTPUT);
+
+    pinMode(ENB, OUTPUT);
+    pinMode(IN3, OUTPUT);
+    pinMode(IN4, OUTPUT);
+}
+
+void setMotor(int pwm, int in1, int in2, int speed) {
+    if (speed >= 0) {
+        digitalWrite(in1, HIGH);
+        digitalWrite(in2, LOW);
     } else {
-        digitalWrite(L_IN1, LOW);
-        digitalWrite(L_IN2, HIGH);
-        analogWrite(L_IN2, -left);
+        digitalWrite(in1, LOW);
+        digitalWrite(in2, HIGH);
+        speed = -speed;
     }
 
-    // RIGHT MOTOR
-    if (right >= 0) {
-        digitalWrite(R_IN1, HIGH);
-        digitalWrite(R_IN2, LOW);
-        analogWrite(R_IN1, right);
-    } else {
-        digitalWrite(R_IN1, LOW);
-        digitalWrite(R_IN2, HIGH);
-        analogWrite(R_IN2, -right);
-    }
+    speed = constrain(speed, 0, 255);
+    analogWrite(pwm, speed);
+}
+
+void setMotorSpeed(int left, int right) {
+    setMotor(ENA, IN1, IN2, left);
+    setMotor(ENB, IN3, IN4, right);
 }

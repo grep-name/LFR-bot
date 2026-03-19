@@ -1,12 +1,12 @@
 
 #include "motor.h"
 #include "pid.h"
-
-#define S1 PA0
-#define S2 PA1
-#define S3 PA2
-#define S4 PA3
-#define S5 PA4
+#include "ir_sensor.h"
+#define S1 PB3
+#define S2 PB5
+#define S3 PB4
+#define S4 PB10
+#define S5 PA8
 
 void sensorInit() {
     pinMode(S1, INPUT);
@@ -28,5 +28,5 @@ float readLine() {
 
     if (sum == 0) return -1;
 
-    return (float)position / sum;  // 👈 important cast
+    return (float)position / sum;
 }
