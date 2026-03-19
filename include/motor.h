@@ -1,6 +1,9 @@
-#ifndef MOTOR_H
-#define MOTOR_H
+#ifndef MOTORS_H
+#define MOTORS_H
 
-void setMotorSpeed(int left,int right);
+#include <Arduino.h>
+
+void motorInit();
+void setMotorSpeed(int left, int right);
 
 #endif
